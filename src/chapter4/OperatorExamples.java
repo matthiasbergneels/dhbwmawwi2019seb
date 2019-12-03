@@ -29,8 +29,6 @@ public class OperatorExamples {
         System.out.println(x);
         System.out.println(result);
 
-
-
         String text1 = "Hallo";
         String text2 = "Klaus";
 
