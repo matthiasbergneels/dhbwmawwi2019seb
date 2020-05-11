@@ -1,6 +1,6 @@
 package chapter7;
 
-public class Plane {
+public class Plane implements Bookable{
 
     private boolean[] seats;
 

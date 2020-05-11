@@ -14,6 +14,8 @@ public class TravelAgency {
 
         bookableThings[0] = myHotel;
         bookableThings[1] = new Hotel(250);
+        bookableThings[2] = new Plane(120);
+        bookableThings[3] = new Plane(99);
 
         for(Bookable bookableThing : bookableThings){
             if(bookableThing != null){
