@@ -11,11 +11,14 @@ public class TravelAgency {
         myHotel.cleanRooms();
         System.out.println("Mein Hotel - freie Plätze: " + myHotel.freeSlots());
 
+        System.out.println("Passt Hotel zu Bookable: " + (myHotel instanceof Bookable));
 
         bookableThings[0] = myHotel;
         bookableThings[1] = new Hotel(250);
         bookableThings[2] = new Plane(120);
         bookableThings[3] = new Plane(99);
+
+
 
         for(Bookable bookableThing : bookableThings){
             if(bookableThing != null){
@@ -26,6 +29,11 @@ public class TravelAgency {
 
                 // nicht sichtbar in Bookable Interface
                 //bookableThing.cleanRooms();
+
+                if(bookableThing instanceof Plane){
+                    Plane myPlane = (Plane)bookableThing;
+                    myPlane.fly();
+                }
 
             }
         }
