@@ -3,6 +3,6 @@ package chapter7;
 public interface Bookable {
 
     public int freeSlots();
-    public boolean book(int slots);
+    public void book(int slots) throws NotEnoughFreeSlots;
 
 }

@@ -20,12 +20,11 @@ public class Hotel extends Object implements Bookable{
     }
 
     @Override
-    public boolean book(int slots) {
+    public void book(int slots) throws NotEnoughFreeSlots{
         if(freeSlots() >= slots){
             bookedRoomCount += slots;
-            return true;
         }else{
-            return false;
+            throw new NotEnoughFreeSlots(slots, freeSlots());
         }
     }
 }

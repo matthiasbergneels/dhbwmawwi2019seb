@@ -21,8 +21,7 @@ public class TravelAgency {
 
 
         for(Bookable bookableThing : bookableThings){
-            if(bookableThing != null){
-
+            if(bookableThing != null) {
                 System.out.println("Freie Plätze: " + bookableThing.freeSlots());
                 System.out.println("Buchung erfolgreich: " + bookableThing.book(101));
                 System.out.println("Freie Plätze: " + bookableThing.freeSlots());
@@ -30,12 +29,14 @@ public class TravelAgency {
                 // nicht sichtbar in Bookable Interface
                 //bookableThing.cleanRooms();
 
-                if(bookableThing instanceof Plane){
-                    Plane myPlane = (Plane)bookableThing;
+                if (bookableThing instanceof Plane) {
+                    Plane myPlane = (Plane) bookableThing;
                     myPlane.fly();
                 }
-
             }
+            System.out.println("Ende des Schleifen-Durchlaufs!");
         }
+
+        System.out.println("Ende der main-Methode!");
     }
 }
