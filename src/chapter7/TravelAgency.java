@@ -2,7 +2,7 @@ package chapter7;
 
 public class TravelAgency {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         Bookable[] bookableThings = new Bookable[5];
 
@@ -23,7 +23,25 @@ public class TravelAgency {
         for(Bookable bookableThing : bookableThings){
             if(bookableThing != null) {
                 System.out.println("Freie Plätze: " + bookableThing.freeSlots());
-                System.out.println("Buchung erfolgreich: " + bookableThing.book(101));
+
+                try {
+                    System.out.println("Jetzt wird gebucht.");
+                    bookableThing.book(101);
+                    System.out.println("Buchung war erfolgreich!");
+                }catch(NotEnoughFreeSlots e){
+                    System.out.println(e.getMessage());
+
+                    try {
+                        bookableThing.book(e.getFreeSlotsLeft());
+                        System.out.println("Trotzdem " + e.getFreeSlotsLeft() + " gebucht!");
+                    }catch(NotEnoughFreeSlots e1){
+                        System.out.println("Da war noch jemand schneller - nicht mehr genug frei!");
+                    }
+                    return;
+                }finally{
+                    System.out.println("Finally wird immer ausgeführt!!");
+                }
+
                 System.out.println("Freie Plätze: " + bookableThing.freeSlots());
 
                 // nicht sichtbar in Bookable Interface

@@ -25,18 +25,18 @@ public class Plane implements Bookable{
 
     @Override
     public void book(int slots) throws NotEnoughFreeSlots {
-        if(freeSlots() >= slots){
-            for(int i = 0; i < seats.length; i++){
-                if(!seats[i]){
-                    seats[i] = true;
-                    slots--;
-                }
-                if(slots == 0){
-                    return;
-                }
-            }
-        }else{
+        if(freeSlots() < slots) {
             throw new NotEnoughFreeSlots(slots, freeSlots());
+        }
+
+        for(int i = 0; i < seats.length; i++){
+            if(!seats[i]){
+                seats[i] = true;
+                slots--;
+            }
+            if(slots == 0){
+                return;
+            }
         }
     }
 }
