@@ -7,18 +7,15 @@ public class Calculator {
     }
 
     public int substract(int operandA, int operandB){
-
-        return 0;
+        return operandA - operandB;
     }
 
     public int multiply(int operandA, int operandB){
-
-        return 0;
+        return operandA * operandB;
     }
 
-    public int divide(int operandA, int operandB){
-
-        return 0;
+    public double divide(int operandA, int operandB){
+        return (double)operandA / operandB;
     }
 
 }

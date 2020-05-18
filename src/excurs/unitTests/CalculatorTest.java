@@ -48,8 +48,15 @@ class CalculatorTest {
     @Test
     void divide() {
         System.out.println("Test für divide Methode");
-        int result = testCalculator.divide(10, 2);
-        Assertions.assertEquals(5, result);
+        double result = testCalculator.divide(10, 2);
+        Assertions.assertEquals(5.0, result);
+    }
+
+    @Test
+    void divide2() {
+        System.out.println("Test für divide Methode");
+        double result = testCalculator.divide(9, 2);
+        Assertions.assertEquals(4.5, result);
     }
 
     @AfterEach
