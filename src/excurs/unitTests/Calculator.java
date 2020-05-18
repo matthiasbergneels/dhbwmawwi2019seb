@@ -3,8 +3,7 @@ package excurs.unitTests;
 public class Calculator {
 
     public int add(int operandA, int operandB){
-
-        return 0;
+        return operandA + operandB;
     }
 
     public int substract(int operandA, int operandB){
