@@ -1,6 +1,6 @@
 package chapter7;
 
-public class Hotel implements Bookable{
+public class Hotel extends Object implements Bookable{
 
     private int roomCount;
     private int bookedRoomCount;
