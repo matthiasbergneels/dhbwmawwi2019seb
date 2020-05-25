@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookableTest {
 
+    static int seats = 100;
     static private Bookable bookableHotel;
     static private Bookable bookablePlane;
 
@@ -16,8 +17,8 @@ class BookableTest {
 
     @BeforeEach
     void setUp() {
-        bookableHotel = new Hotel(100);
-        bookablePlane = new Plane(100);
+        bookableHotel = new Hotel(seats);
+        bookablePlane = new Plane(seats);
     }
 
     @AfterEach
@@ -31,14 +32,35 @@ class BookableTest {
 
     @Test
     void positivBookingHotel() {
-        //assertTrue(bookableHotel.book(60));
+        try{
+            bookableHotel.book(60);
+        }catch(NotEnoughFreeSlots e){
+
+        }
         assertEquals(40, bookableHotel.freeSlots());
     }
 
     @Test
     void failingBookingHotel() {
-        //assertFalse(bookableHotel.book(101));
+        int seatsToBook = 101;
+        String expectedExceptionMessage = "Es wurde versucht " + seatsToBook + " Slots zu buchen; freie Slots " + seats;
+
+        try{
+            bookableHotel.book(seatsToBook);
+        }catch(Exception e){
+            assertTrue(e instanceof NotEnoughFreeSlots);
+            assertEquals(expectedExceptionMessage, e.getMessage());
+        }
         assertEquals(100, bookableHotel.freeSlots());
+    }
+
+    @Test
+    void failingBookingHotelException(){
+
+        assertThrows(NotEnoughFreeSlots.class, () -> {
+            bookableHotel.book(101);
+        });
+
     }
 
     @Test

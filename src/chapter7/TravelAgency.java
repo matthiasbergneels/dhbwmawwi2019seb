@@ -21,26 +21,13 @@ public class TravelAgency {
 
 
         for(Bookable bookableThing : bookableThings){
-            if(bookableThing != null) {
+            try{
                 System.out.println("Freie Plätze: " + bookableThing.freeSlots());
+                bookableThing.book(101);
+                System.out.println("Jetzt wird gebucht.");
 
-                try {
-                    System.out.println("Jetzt wird gebucht.");
-                    bookableThing.book(101);
-                    System.out.println("Buchung war erfolgreich!");
-                }catch(NotEnoughFreeSlots e){
-                    System.out.println(e.getMessage());
+                System.out.println("Buchung war erfolgreich!");
 
-                    try {
-                        bookableThing.book(e.getFreeSlotsLeft());
-                        System.out.println("Trotzdem " + e.getFreeSlotsLeft() + " gebucht!");
-                    }catch(NotEnoughFreeSlots e1){
-                        System.out.println("Da war noch jemand schneller - nicht mehr genug frei!");
-                    }
-                    return;
-                }finally{
-                    System.out.println("Finally wird immer ausgeführt!!");
-                }
 
                 System.out.println("Freie Plätze: " + bookableThing.freeSlots());
 
@@ -51,7 +38,25 @@ public class TravelAgency {
                     Plane myPlane = (Plane) bookableThing;
                     myPlane.fly();
                 }
+
+            } catch(NotEnoughFreeSlots e){
+                System.out.println(e.getMessage());
+
+                try {
+                    bookableThing.book(e.getFreeSlotsLeft());
+                    System.out.println("Trotzdem " + e.getFreeSlotsLeft() + " gebucht!");
+                }catch(NotEnoughFreeSlots e1){
+                    System.out.println("Da war noch jemand schneller - nicht mehr genug frei!");
+                }
+                //return;
+
+            } catch(NullPointerException e) {
+                System.out.println("Leere Referenz - mit der Schleife weiter machen!");
+
+            } finally {
+                System.out.println("Finally wird immer ausgeführt!!");
             }
+
             System.out.println("Ende des Schleifen-Durchlaufs!");
         }
 
