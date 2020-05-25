@@ -31,12 +31,22 @@ class BookableTest {
     }
 
     @Test
+    @DisplayName("Buchung positiv Test")
     void positivBookingHotel() {
         try{
             bookableHotel.book(60);
         }catch(NotEnoughFreeSlots e){
-
+            assertTrue(false, "NotEnoughFreeSlots Exception thrown!");
         }
+        assertEquals(40, bookableHotel.freeSlots());
+    }
+
+    @Test
+    @DisplayName("Buchung positiv Test - ohne Ausnahme")
+    void positivBookingHotelNoException() {
+        assertDoesNotThrow(()->{
+            bookableHotel.book(60);
+        });
         assertEquals(40, bookableHotel.freeSlots());
     }
 
@@ -60,7 +70,6 @@ class BookableTest {
         assertThrows(NotEnoughFreeSlots.class, () -> {
             bookableHotel.book(101);
         });
-
     }
 
     @Test
