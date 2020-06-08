@@ -7,7 +7,7 @@ public class StudentSetExample {
 
     public static void main(String[] args) {
 
-        Set<Student> studentSet = new TreeSet<Student>();
+        Set<Student> studentSet = new TreeSet<Student>(new StudentSortByAge());
 
         studentSet.add(new Student(1234, "Horst", "Mayer", 24));
         studentSet.add(new Student(6273, "Gabi", "Michel", 25));

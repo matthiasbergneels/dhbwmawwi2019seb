@@ -4,6 +4,7 @@ import chapter5.Car;
 import chapter5.Student;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,7 +16,9 @@ public class ListExample {
 
         String name = "Matilde";
 
+        nameList.add("Zeus");
         nameList.add("Klaus");
+        nameList.add("Anna");
         nameList.add(name);
         nameList.add("Franz");
         nameList.add("Sandra");
@@ -67,6 +70,26 @@ public class ListExample {
         }
 
         System.out.println("Anzahl Namen in der Liste: " + nameList.size());
+
+
+        // Sort List
+        Collections.sort(nameList);
+
+        System.out.println("Sortierte Liste - Namen (natürliche Ordnung): ");
+        System.out.println("======================== ");
+        for(String nameInList  : nameList){
+            System.out.println(nameInList);
+        }
+
+        // Sort List
+        Collections.sort(nameList, new StringSortByCharacterCount());
+
+        System.out.println("Sortierte Liste - Namen (Anzahl Zeichen): ");
+        System.out.println("======================== ");
+        for(String nameInList  : nameList){
+            System.out.println(nameInList);
+        }
+
 
         nameList.clear();
         System.out.println("Anzahl Namen in der Liste: " + nameList.size());
