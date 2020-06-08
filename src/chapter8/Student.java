@@ -1,6 +1,6 @@
 package chapter8;
 
-public class Student {
+public class Student implements Comparable<Student>{
 
     private int enrollmentId;
     private String name;
@@ -46,4 +46,17 @@ public class Student {
         this.age = age;
     }
 
+    @Override
+    public int compareTo(Student o) {
+
+        if(this.getEnrollmentId() != o.getEnrollmentId()){
+            return this.getEnrollmentId() - o.getEnrollmentId();
+        }
+
+        if(!this.getFamilyName().equals(o.getFamilyName())){
+            return this.getFamilyName().compareTo(o.getFamilyName());
+        }
+
+        return this.getName().compareTo(o.getName());
+    }
 }
