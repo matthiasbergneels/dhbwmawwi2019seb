@@ -59,4 +59,48 @@ public class Student implements Comparable<Student>{
 
         return this.getName().compareTo(o.getName());
     }
+
+    @Override
+    public boolean equals(Object o){
+
+        // Alias-Check --> sehr performant
+        if(this == o){
+            return true;
+        }
+
+        // Test auf null
+        if(o == null){
+            return false;
+        }
+
+        // Typverträglichkeit
+        if(o.getClass() != this.getClass()){
+            return false;
+        }
+
+        // Feldvergleichen (auf relevante Attribute)
+        Student s = (Student)o;
+
+        if(this.getEnrollmentId() != s.getEnrollmentId()){
+            return false;
+        }
+
+        if(!this.getFamilyName().equals(s.getFamilyName())){
+            return false;
+        }
+
+        if(!this.getName().equals(s.getName())){
+            return false;
+        }
+
+        return true;
+
+        /* --> Alternative für Feldvergleich
+        if(this.compareTo(s) == 0){
+            return true;
+        }else{
+            return false;
+        }*/
+
+    }
 }
