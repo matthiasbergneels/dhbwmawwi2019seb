@@ -101,6 +101,10 @@ public class Student implements Comparable<Student>{
         }else{
             return false;
         }*/
+    }
 
+    @Override
+    public int hashCode(){
+        return this.getEnrollmentId() ^ this.getFamilyName().hashCode() ^ this.getName().hashCode();
     }
 }

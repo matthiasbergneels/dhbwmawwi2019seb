@@ -50,4 +50,24 @@ public abstract class Animal {
     public String toString() {
         return "Description: " + this.getDescription() + ", Size: " + this.getSize() + ", Weight: " + this.getWeight();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Animal animal = (Animal) o;
+
+        if (Float.compare(animal.size, size) != 0) return false;
+        if (Float.compare(animal.weight, weight) != 0) return false;
+        return description != null ? description.equals(animal.description) : animal.description == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (size != +0.0f ? Float.floatToIntBits(size) : 0);
+        result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        return result;
+    }
 }
