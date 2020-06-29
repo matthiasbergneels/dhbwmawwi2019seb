@@ -1,4 +1,4 @@
-package lecture.chapter9;
+package chapter9;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -32,8 +32,6 @@ public class Logon extends JFrame{
         myComboBox.addActionListener((ActionEvent e) -> {
             System.out.println(e.getActionCommand());
         });
-
-
 
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
