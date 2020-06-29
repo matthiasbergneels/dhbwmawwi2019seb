@@ -11,27 +11,14 @@ import javax.swing.text.MaskFormatter;
 
 public class Logon extends JFrame{
 
-    private static final String COMMAND_OK = "OK";
-    private static final String COMMAND_CANCEL = "CANCEL";
-
     private JTextField host;
 
-    public Logon() throws ParseException{
+    public Logon() throws ParseException {
 
         this.setTitle("Logon");
 
         String[] valueHelp = {"FTP", "Telnet", "SMTP", "HTTP"};
         JComboBox<String> myComboBox = new JComboBox<String>(valueHelp);
-
-        myComboBox.addItemListener((ItemEvent e) -> {
-            if(e.getStateChange() == ItemEvent.SELECTED){
-                System.out.println("Selected item: " + e.getItem());
-            }
-        });
-
-        myComboBox.addActionListener((ActionEvent e) -> {
-            System.out.println(e.getActionCommand());
-        });
 
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
