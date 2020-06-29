@@ -11,6 +11,9 @@ import javax.swing.text.MaskFormatter;
 
 public class Logon extends JFrame{
 
+    private final String COMMAND_OK = "COMMAND_OK";
+    private final String COMMAND_CLOSE = "COMMAND_CLOSE";
+
     private JTextField host;
 
     public Logon() throws ParseException {
@@ -19,6 +22,22 @@ public class Logon extends JFrame{
 
         String[] valueHelp = {"FTP", "Telnet", "SMTP", "HTTP"};
         JComboBox<String> myComboBox = new JComboBox<String>(valueHelp);
+
+        //myComboBox.addItemListener(new ComboBoxListener(host));
+
+        JFormattedTextField portField = new JFormattedTextField(new MaskFormatter("#####"));
+        portField.setColumns(3);
+
+        myComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    System.out.println("Neue Auswahl: " + e.getItem());
+                    host.setText(e.getItem() + "://");
+                    portField.setText("22");
+                }
+            }
+        });
 
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -29,8 +48,7 @@ public class Logon extends JFrame{
         JPanel connectionPanel = new JPanel(new GridLayout(0, 2));
         JPanel filePanel = new JPanel(new GridLayout(0, 2));
 
-        JFormattedTextField portField = new JFormattedTextField(new MaskFormatter("#####"));
-        portField.setColumns(3);
+
 
         FlowLayout cellFlowLayout = new FlowLayout(FlowLayout.LEFT);
 
@@ -83,7 +101,29 @@ public class Logon extends JFrame{
 
         // create & assign Buttons
         JButton okButton = new JButton("Okay");
+        okButton.setActionCommand(COMMAND_OK);
         JButton cancelButton = new JButton("Cancel");
+        cancelButton.setActionCommand(COMMAND_CLOSE);
+
+        ActionListener buttonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Modifiers: " + e.getModifiers());
+                System.out.println("When: " + e.getWhen());
+
+                if(e.getActionCommand().equals(COMMAND_OK)){
+                    System.out.println("Host: " + host.getText());
+                }else if(e.getActionCommand().equals(COMMAND_CLOSE)){
+                    System.exit(0);
+                }
+            }
+        };
+
+        System.out.println(buttonListener);
+
+        okButton.addActionListener(buttonListener);
+        cancelButton.addActionListener(buttonListener);
+
 
         southPanel.add(okButton);
         southPanel.add(cancelButton);
