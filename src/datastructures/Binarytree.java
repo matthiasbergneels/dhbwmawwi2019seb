@@ -41,6 +41,27 @@ public class Binarytree<D> {
         }
     }
 
+    public void printInOrder(){
+        if(root == null){
+            System.out.println("Baum ist leer");
+            return;
+        }
+
+        printInOrder(root);
+    }
+
+    private void printInOrder(Node<D> currentNode){
+        if(currentNode.getLeftNode() != null){
+            printInOrder(currentNode.getLeftNode());
+        }
+
+        System.out.println(currentNode.getData());
+
+        if(currentNode.getRightNode() != null){
+            printInOrder(currentNode.getRightNode());
+        }
+    }
+
     public boolean contains(D data){
         return contains(root, data);
     }
