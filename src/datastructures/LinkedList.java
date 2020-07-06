@@ -3,9 +3,11 @@ package datastructures;
 public class LinkedList {
 
     private Node firstNode = null;
+    private int size = 0;
 
     public void add(Object data){
         Node newNode = new Node(data);
+        size++;
 
         if(firstNode == null){
             firstNode = newNode;
@@ -21,11 +23,32 @@ public class LinkedList {
     }
 
     public int size(){
+        return size;
+    }
+
+    public int sizeWhile(){
         int counter = 0;
+        Node currentNode = firstNode;
+
+        while(currentNode != null){
+            counter++;
+            currentNode = currentNode.getNextNode();
+        }
+
+        return counter;
+    }
+
+    public int sizeDoWhile(){
+        if(firstNode == null){
+            return 0;
+        }
+
+        int counter = 1;
         Node currentNode = firstNode;
 
         do{
             counter++;
+            currentNode = currentNode.getNextNode();
         }while(currentNode.getNextNode() != null);
 
         return counter;
