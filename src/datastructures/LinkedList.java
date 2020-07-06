@@ -9,7 +9,7 @@ public class LinkedList<D> {
         if(data == null){
             return;
         }
-        
+
         Node<D> newNode = new Node<D>(data);
         size++;
 
