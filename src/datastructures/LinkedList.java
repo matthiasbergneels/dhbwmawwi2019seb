@@ -1,12 +1,16 @@
 package datastructures;
 
-public class LinkedList {
+public class LinkedList<D> {
 
-    private Node firstNode = null;
+    private Node<D> firstNode = null;
     private int size = 0;
 
-    public void add(Object data){
-        Node newNode = new Node(data);
+    public void add(D data){
+        if(data == null){
+            return;
+        }
+        
+        Node<D> newNode = new Node<D>(data);
         size++;
 
         if(firstNode == null){
@@ -14,7 +18,7 @@ public class LinkedList {
             return;
         }
 
-        Node currentNode = this.firstNode;
+        Node<D> currentNode = this.firstNode;
         while(currentNode.getNextNode() != null){
             currentNode = currentNode.getNextNode();
         }
@@ -22,8 +26,24 @@ public class LinkedList {
         currentNode.setNextNode(newNode);
     }
 
-    public boolean remove(Object data){
+    public boolean remove(D data){
+        if(firstNode != null){
+            if(firstNode.getData().equals(data)){
+                firstNode = firstNode.getNextNode();
+                size--;
+                return true;
+            }
 
+            Node<D> currentNode = firstNode;
+            while(currentNode.getNextNode() != null){
+                if(currentNode.getNextNode().getData().equals(data)){
+                    currentNode.setNextNode(currentNode.getNextNode().getNextNode());
+                    size--;
+                    return true;
+                }
+                currentNode = currentNode.getNextNode();
+            }
+        }
         return false;
     }
 
@@ -33,7 +53,7 @@ public class LinkedList {
 
     public int sizeWhile(){
         int counter = 0;
-        Node currentNode = firstNode;
+        Node<D> currentNode = firstNode;
 
         while(currentNode != null){
             counter++;
@@ -49,7 +69,7 @@ public class LinkedList {
         }
 
         int counter = 1;
-        Node currentNode = firstNode;
+        Node<D> currentNode = firstNode;
 
         do{
             counter++;
@@ -70,24 +90,24 @@ public class LinkedList {
     }
 
     // rekursive Methode zur Listenausgabe
-    private void printList(Node currentNode){
+    private void printList(Node<D> currentNode){
         System.out.println(currentNode.getData());
         if(currentNode.getNextNode() != null){
             printList(currentNode.getNextNode());
         }
     }
 
-    private class Node{
+    private class Node<D>{
 
-        private Object data;
+        private D data;
         private Node nextNode;
 
-        public Node(Object data){
+        public Node(D data){
             this.data = data;
             nextNode = null;
         }
 
-        public Object getData(){
+        public D getData(){
             return this.data;
         }
 
