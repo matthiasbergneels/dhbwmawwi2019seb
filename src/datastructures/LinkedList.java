@@ -22,6 +22,11 @@ public class LinkedList {
         currentNode.setNextNode(newNode);
     }
 
+    public boolean remove(Object data){
+
+        return false;
+    }
+
     public int size(){
         return size;
     }
