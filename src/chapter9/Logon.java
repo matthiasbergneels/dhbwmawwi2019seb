@@ -28,6 +28,7 @@ public class Logon extends JFrame{
         JFormattedTextField portField = new JFormattedTextField(new MaskFormatter("#####"));
         portField.setColumns(3);
 
+        /*
         myComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -36,6 +37,16 @@ public class Logon extends JFrame{
                     host.setText(e.getItem() + "://");
                     portField.setText("22");
                 }
+            }
+        });
+        */
+
+        // Listener implementation as Lambda Function
+        myComboBox.addItemListener(e -> {
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                System.out.println("Neue Auswahl: " + e.getItem());
+                host.setText(e.getItem() + "://");
+                portField.setText("22");
             }
         });
 
@@ -105,6 +116,7 @@ public class Logon extends JFrame{
         JButton cancelButton = new JButton("Cancel");
         cancelButton.setActionCommand(COMMAND_CLOSE);
 
+        /*
         ActionListener buttonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -118,12 +130,65 @@ public class Logon extends JFrame{
                 }
             }
         };
+        */
 
-        System.out.println(buttonListener);
+        // Exmaple with Lambda Implementation
+        ActionListener buttonListener = e -> {
+            System.out.println("Modifiers: " + e.getModifiers());
+            System.out.println("When: " + e.getWhen());
+
+            if(e.getActionCommand().equals(COMMAND_OK)){
+                System.out.println("Host: " + host.getText());
+            }else if(e.getActionCommand().equals(COMMAND_CLOSE)){
+                System.exit(0);
+            }
+        };
 
         okButton.addActionListener(buttonListener);
         cancelButton.addActionListener(buttonListener);
 
+        MouseListener buttonMouseListener = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                System.out.println("Clicked");
+                printInfo(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                System.out.println("Pressed");
+                printInfo(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                System.out.println("Released");
+                printInfo(e);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("Entered");
+                printInfo(e);
+                ((JButton)e.getSource()).setEnabled(false);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                System.out.println("Exited");
+                printInfo(e);
+                ((JButton)e.getSource()).setEnabled(true);
+            }
+
+            private void printInfo(MouseEvent e){
+                System.out.println("X on Component: " + e.getX());
+                System.out.println("Y on Component: " + e.getY());
+                System.out.println("Mouse button: " + e.getButton());
+            }
+        };
+
+        okButton.addMouseListener(buttonMouseListener);
+        cancelButton.addMouseListener(buttonMouseListener);
 
         southPanel.add(okButton);
         southPanel.add(cancelButton);
