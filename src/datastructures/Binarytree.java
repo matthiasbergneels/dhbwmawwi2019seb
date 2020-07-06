@@ -2,6 +2,68 @@ package datastructures;
 
 public class Binarytree<D> {
 
+    private Node<D> root = null;
+    private int size = 0;
+
+    public void insert(D data){
+        if(data == null){
+            return;
+        }
+
+        if(root == null){
+            root = new Node<D>(data);
+            size++;
+            return;
+        }
+
+        // start der Rekursion
+        insert(root, data);
+    }
+
+    private void insert(Node<D> currentNode, D data){
+
+        int compareToResult = ((Comparable)currentNode.getData()).compareTo(data);
+
+        if(compareToResult > 0){
+            if(currentNode.getLeftNode() != null){
+                insert(currentNode.leftNode, data);
+            }else{
+                size++;
+                currentNode.setLeftNode(new Node<D>(data));
+            }
+        }else if(compareToResult < 0){
+            if(currentNode.getRightNode() != null){
+                insert(currentNode.getRightNode(), data);
+            }else{
+                size++;
+                currentNode.setRightNode(new Node<D>(data));
+            }
+        }
+    }
+
+    public boolean contains(D data){
+        return contains(root, data);
+    }
+
+    private boolean contains(Node<D> currentNode, D data){
+        if(currentNode == null){
+            return false;
+        }
+
+        if(currentNode.getData().equals(data)){
+            return true;
+        }
+
+        if(((Comparable)currentNode.getData()).compareTo(data) > 0){
+            return contains(currentNode.getLeftNode(), data);
+        }else{
+            return contains(currentNode.getRightNode(), data);
+        }
+    }
+
+    public int size(){
+        return size;
+    }
 
     private class Node<D>{
 
