@@ -62,6 +62,50 @@ public class Binarytree<D> {
         }
     }
 
+
+    public void printPreOrder(){
+        if(root == null){
+            System.out.println("Baum ist leer");
+            return;
+        }
+
+        printPreOrder(root);
+    }
+
+    private void printPreOrder(Node<D> currentNode){
+        System.out.println(currentNode.getData());
+
+        if(currentNode.getLeftNode() != null){
+            printPreOrder(currentNode.getLeftNode());
+        }
+
+        if(currentNode.getRightNode() != null){
+            printPreOrder(currentNode.getRightNode());
+        }
+    }
+
+    public void printPostOrder(){
+        if(root == null){
+            System.out.println("Baum ist leer");
+            return;
+        }
+
+        printPostOrder(root);
+    }
+
+    private void printPostOrder(Node<D> currentNode){
+        if(currentNode.getLeftNode() != null){
+            printPostOrder(currentNode.getLeftNode());
+        }
+
+        if(currentNode.getRightNode() != null){
+            printPostOrder(currentNode.getRightNode());
+        }
+
+        System.out.println(currentNode.getData());
+    }
+
+
     public boolean contains(D data){
         return contains(root, data);
     }
