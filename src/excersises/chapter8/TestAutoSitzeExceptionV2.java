@@ -1,10 +1,9 @@
 package excersises.chapter8;
 
-public class TestAutoSitzeException {
+public class TestAutoSitzeExceptionV2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FalscheParameter {
 
-        try {
             AutoSitz validSeat1 = new AutoSitz(false, "rot");
             System.out.println("1. Sitz produziert!");
             AutoSitz validSeat2 = new AutoSitz(true, "schwarz");
@@ -13,13 +12,7 @@ public class TestAutoSitzeException {
             System.out.println("3. Sitz produziert!");
             AutoSitz validSeat4 = new AutoSitz(false, "blau");
             System.out.println("4. Sitz produziert!");
-        } catch(FalscheParameter e){
-            System.out.println(e.getMessage());
-            return;
-        }finally{
-            System.out.println("Produzierte Sitze werden verschickt!");
-        }
 
-        System.out.println("Ende der Autositz-Produktion!");
+        System.out.println("Ende der Autositz-produktion!");
     }
 }
